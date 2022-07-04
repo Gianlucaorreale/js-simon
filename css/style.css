@@ -19,3 +19,12 @@
     align-items: center;
     font-size: 5rem;
 }
+
+#numbers{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    padding: 10px;
+}
