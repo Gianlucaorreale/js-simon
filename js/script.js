@@ -11,14 +11,13 @@ display.innerText = seconds
 const totalNumbers = 5;
 
  
-function random (){
+
     
     for(let i = 1; i <= 5; i++){
       numbers.innerText += `${i}`;
     }
-}
 
-random()
+
 
 const countdown = setInterval(function(){
     display.innerText = --seconds
@@ -28,10 +27,17 @@ const countdown = setInterval(function(){
     }
 }, 1000)
 
+const containerArray = []
+
 setTimeout( function () {
     for(let i =1; i<5; i++){
         const insert = prompt('isnerisci i numeri')
+        containerArray.push(i)
+        console.log(containerArray);
+        
     }
-}, 30000)
+}, 3000)
+
+
 
 
