@@ -4,40 +4,46 @@ Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto pr
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.*/
 
 
-const numbers = document.getElementById('numbers');
-const display = document.getElementById('display');
-let seconds = 30;
-display.innerText = seconds
+const countdownElement = document.getElementById('countdown');
+const numbersElement = document.getElementById('numbers-list');
+
+const min = 1;
+const max = 99;
 const totalNumbers = 5;
-
- 
-
-    
-    for(let i = 1; i <= 5; i++){
-      numbers.innerText += `${i}`;
-    }
+let time = 30;
 
 
 
-const countdown = setInterval(function(){
-    display.innerText = --seconds
+const numbers = getRandomUniqueNumbers (min, max, totalNumbers);
 
-    if(seconds === 0){
-        clearInterval(countdown);
-    }
-}, 1000)
+let items = '';
 
-const containerArray = []
+for (let i = 0; i < totalNumbers; i++ ){
+    items += `<li>${numbers[i]}</li>`
+}
 
-setTimeout( function () {
-    for(let i =1; i<5; i++){
-        const insert = prompt('isnerisci i numeri')
-        containerArray.push(i)
-        console.log(containerArray);
-        
-    }
-}, 3000)
+numbersElement.innerHTML = items; 
 
+const countdown = setInterval (()=>{
+    if (time === 0) clearInterval (countdown);
+    else countdownElement.innerText = --time;
+}, 1000);
 
+setTimeout (()=>{
+   numbersElement.className = 'hidden';
+} ,30000);
 
+setTimeout (()=>{
+const userNumbers = [];
+while (userNumbers.length < totalNumbers){
+    const userNumber = getUserNumber(min,max);
+    if(!userNumbers.includes(userNumber)) userNumbers.push(userNumber);
+}
 
+let userPoints = 0;
+for (let i = 0; i < totalNumbers; i++){
+ if(numbers.includes(userNumbers[i])) userPoints++
+}
+alert (`hai totalizzato ${userPoints} punti`);
+
+}, 30200)
